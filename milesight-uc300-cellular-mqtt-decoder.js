@@ -33,6 +33,17 @@ function Decoder(topic, payload) {
         
         console.log(analogInput1);
         
+        // Calibration Factor
+        var callow = 1.031941;
+        var calhigh = 1.023018;
+        var caldelta = (callow - calhigh) / 16;
+        var calfactor = (callow + (caldelta * (4 - analogInput1)));
+        
+        // Apply Calibration
+        analogInput1 = analogInput1 * calfactor;
+        
+        console.log(analogInput1);
+        
         return [
             {
                 device: "84109e08-7e85-4f50-a0c6-2e7d0dc4f7f5", // Serial Number or Device ID
